@@ -1,9 +1,9 @@
 package googleclouddns
 
 import (
+	libgoogleclouddns "github.com/alexpovel/googleclouddns"
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
-	libgoogleclouddns "github.com/libdns/googleclouddns"
 )
 
 // Provider lets Caddy read and manipulate DNS records hosted by this DNS provider.
@@ -31,11 +31,10 @@ func (p *Provider) Provision(ctx caddy.Context) error {
 
 // UnmarshalCaddyfile sets up the DNS provider from Caddyfile tokens. Syntax:
 //
-// googleclouddns {
-//     gcp_project <project ID>
-//     gcp_application_default <path to service account JSON (optional)>
-// }
-//
+//	googleclouddns {
+//	    gcp_project <project ID>
+//	    gcp_application_default <path to service account JSON (optional)>
+//	}
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 	for d.Next() {
 		if d.NextArg() {
